@@ -1,0 +1,18 @@
+services:
+  phpunit:
+    container_name: unittest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/var/www/html
+    environment:
+      - APP_ENV=testing
+      - XDEBUG_MODE=coverage
+    networks:
+      - exam-network
+    command: tail -f /dev/null
+
+networks:
+  exam-network:
+    driver: bridge
